@@ -32,7 +32,7 @@ exports.login = (req, res, next) => {
                     if (!valide) {
                         return res.status(401).json({ message: 'Mot de passe incorrect!' }) // si la comparaison n'est pas bonne, une erreur est renvoyé
                     }
-                    res.status(200).json({  // si la comparaison est bonne , l'utilisateur à entréé des identifiants valable
+                    res.status(200).json({  // si la comparaison est bonne , l'utilisateur à entrée des identifiants valable
                         user_id: user._id,
                         token: jwt.sign(
                             { userId: user._id },

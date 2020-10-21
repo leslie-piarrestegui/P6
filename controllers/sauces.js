@@ -1,5 +1,5 @@
 const Sauces = require('../models/sauces')
-const fs = require('fcds');
+const fs = require('fs');
 
 exports.createSauce = (req, res, next) => {
   const sauceObject = JSON.parse(req.body.sauce);// on parse les données envoyés pr pouvoir les utiliser
@@ -9,7 +9,10 @@ exports.createSauce = (req, res, next) => {
   });
   sauce.save()
     .then(() => res.status(201).json({ message: 'Sauce crée!' }))
-    .catch(error => res.status(400).json({ error }));
+    .catch(error => {
+      console.log(error)
+      res.status(400).json({ error })
+    });
 };
 
 exports.modifySauce = (req, res, next) => {
@@ -102,7 +105,7 @@ exports.likeSauce = (req, res, next) => {
         .catch((error) => { res.status(400).json({ error: error }) });
       break;
     default:
-      console.error('error')
+      console.error('Bad request')
   }
 };
 
