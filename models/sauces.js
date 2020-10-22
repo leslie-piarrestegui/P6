@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const { Number } = require('core-js');
 
 const sauceSchema = mongoose.Schema({
-  userId: { type: String, required: true },
   name: { type: String, required: true },
   manufacturer: { type: String, required: true },
   description: { type: String, required: true },
@@ -15,4 +14,4 @@ const sauceSchema = mongoose.Schema({
   usersDisliked: { type: [String], required: false }
 })
 
-module.exports = mongoose.model("Sauce", sauceSchema)
+module.exports = mongoose.model("sauces", sauceSchema)
