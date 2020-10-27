@@ -1,11 +1,10 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const authService = require('../services/auth.service');
 
 module.exports = async (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(' ')[1];
-    const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
-    const userId = decodedToken.userId;
+    const userId = authService.getDecodedToken(req).userId;
 
     if (req.body.userId && req.body.userId !== userId) {
       throw 'Invalid user ID';
